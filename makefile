@@ -24,7 +24,7 @@ MAINOBJS = $(patsubst %.cpp,$(OBJ_DIR)/%.o,$(notdir $(MAINSRCS)))
 TESTFILENOFIXES = $(patsubst %.cpp,%,$(patsubst test_%,%,$(TESTFILE)))
 TESTMAINSRC = $(MAINSRC_DIR)/$(TESTFILENOFIXES).cpp
 TESTTESTSRC = $(TESTSRC_DIR)/test_$(TESTFILENOFIXES).cpp
-TESTBIN = $(BIN_DIR)/$(TESTFILENOFIXES).exe
+TESTBIN = $(BIN_DIR)/test/$(TESTFILENOFIXES).exe
 
 
 # COMMANDS
