@@ -68,6 +68,11 @@ int main(int argc,char* argv[])
 
 
     int opt;
+    if(argc==1)
+    {
+        printUsage();
+        return 0;
+    }
     while ((opt=getopt(argc,argv,"c::s:n::m:ur:o:hf")) != -1)
     {
         switch (opt)
