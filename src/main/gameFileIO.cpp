@@ -36,6 +36,7 @@ int GameFile::GetLastError()
 
 
 
+
 /**
  * @brief Read matrix from file
  * 
@@ -44,7 +45,7 @@ int GameFile::GetLastError()
  * @return FALSE: matrix is not successfully read from file , you can use GetLastError() to get error info.
  * @warning Notice that matrix should be a 9*9 int and shouldn't be a pointer(int**). Or it will make an compile error.
  */
-bool GameFile::getMatrix(int (&matrix)[9][9])
+bool GameFile::readMatrix(int (&matrix)[9][9])
 {
     if(openMode==OUT)
     {
@@ -68,6 +69,8 @@ bool GameFile::getMatrix(int (&matrix)[9][9])
         for(int j=0;j<9;j++)
             matrix[i][j]=matrixStringStream.get()-'0';
         matrixStringStream.get();
+
+    return true;
 }
 
 /**
@@ -78,7 +81,7 @@ bool GameFile::getMatrix(int (&matrix)[9][9])
  * @return FALSE:matrix is not written, you can use GetLastError() to get error info.
  * @warning Notice that matrix should be a 9*9 int and shouldn't be a pointer(int**). Or it will make an compile error.
  */
-bool GameFile::putMatrix(int matrix[9][9])
+bool GameFile::writeMatrix(int matrix[9][9])
 {
     if(openMode==IN)
     {
@@ -100,5 +103,80 @@ bool GameFile::putMatrix(int matrix[9][9])
     matrixStringStream<<",\n";
 
     fileOperator<<matrixStringStream.str();
+
+    return true;
 }
 
+
+
+
+
+/**
+ * @brief Read matrix from file
+ * 
+ * @param [out]matrix a 81 int array
+ * @return TRUE: matrix is read from file successfully. 
+ * @return FALSE: matrix is not successfully read from file , you can use GetLastError() to get error info.
+ * @warning Notice that matrix should be a 81 int and shouldn't be a pointer(int*). Or it will make an compile error.
+ */
+bool GameFile::readMatrixas1D(int (&matrix)[81])
+{
+    if(openMode==OUT)
+    {
+        lastError=MODEERROR;
+        return false;
+    }
+
+    char matrixChArray[100];
+    fileOperator.getline(matrixChArray,100,',');
+
+    string matrixString(matrixChArray);
+    if(matrixString.length()!=90)
+    {
+        lastError=MATRIXFORMATERROR;
+        return false;
+    }
+
+    stringstream matrixStringStream(matrixString);
+
+    for(int i=0;i<9;i++)
+        for(int j=0;j<9;j++)
+            matrix[i*9+j]=matrixStringStream.get()-'0';
+        matrixStringStream.get();
+
+    return true;
+}
+
+/**
+ * @brief Write matrix to file
+ * 
+ * @param [in]matrix a 9*9 int matrix
+ * @return TRUE:matrix is write to file successfully. 
+ * @return FALSE:matrix is not written, you can use GetLastError() to get error info.
+ * @warning Notice that matrix should be a 9*9 int and shouldn't be a pointer(int**). Or it will make an compile error.
+ */
+bool GameFile::writeMatrixas1D(int matrix[81])
+{
+    if(openMode==IN)
+    {
+        lastError=MODEERROR;
+        return false;
+    }
+
+    stringstream matrixStringStream;
+    for(int i=0;i<9;i++) {
+        for(int j=0;j<9;j++) {
+            if(matrix[i*9+j]<0 || matrix[i*9+j]>9) {
+                lastError=MATRIXELEMENTERROR;
+                return false;
+            }
+            matrixStringStream<<matrix[i*9+j];
+        }
+        matrixStringStream<<'\n';
+    }
+    matrixStringStream<<",\n";
+
+    fileOperator<<matrixStringStream.str();
+
+    return true;
+}

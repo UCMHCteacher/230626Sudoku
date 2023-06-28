@@ -26,8 +26,13 @@ private:
     int openMode;
 
 public:
-    bool getMatrix(int (&matrix)[9][9]);
-    bool putMatrix(int matrix[9][9]);
+    bool readMatrix(int (&matrix)[9][9]);
+    bool writeMatrix(int matrix[9][9]);
+
+public:
+    bool readMatrixas1D(int (&matrix)[81]);
+    bool writeMatrixas1D(int matrix[81]);
+
 
 public:
     int GetLastError();
