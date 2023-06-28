@@ -27,16 +27,16 @@ private:
 
 public:
     bool readMatrix(int (&matrix)[9][9]);
-    bool writeMatrix(int matrix[9][9]);
+    bool writeMatrix(int (&matrix)[9][9]);
 
 public:
     bool readMatrixas1D(int (&matrix)[81]);
-    bool writeMatrixas1D(int matrix[81]);
+    bool writeMatrixas1D(int (&matrix)[81]);
 
 
 public:
     int GetLastError();
-    enum {MATRIXFORMATERROR=1, MODEERROR, MATRIXELEMENTERROR};
+    enum {OPERATEMODEERROR=1, MATRIXSIZEINFILEERROR, MATRIXELEMENTERROR};
 private:
     int lastError;
 };
