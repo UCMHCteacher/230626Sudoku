@@ -12,7 +12,6 @@
 using namespace std;
 
 int result[100000000];	   // 用于存放指向存放终局数据数组的指针
-char write_type[99999999]; // 用于提前存好数独终局的格式，减少写入文件的时间
 short solve_map[9][9];	   // 用于存放求唯一解每格可填数字
 
 class sudo
