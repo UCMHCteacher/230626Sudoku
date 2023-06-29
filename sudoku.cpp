@@ -107,6 +107,7 @@ void sudo::create_Que(int count, int que_num, int hole, int unique)
 		if (unique)
 			for (int i = 0; i < 9; i++)
 			{
+				int tmp = n;
 				for (int j = 0; j < 9; j++)
 				{
 					n--;
@@ -114,6 +115,8 @@ void sudo::create_Que(int count, int que_num, int hole, int unique)
 						break;
 					n++;
 				}
+				if(n!=tmp)
+					break;
 			}
 		write_to_file("sudo_que.txt",sudo_map);
 	}
