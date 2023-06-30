@@ -29,5 +29,5 @@
 .vscode
 
 # complied files
-bin
-obj
+release
+test
