@@ -54,8 +54,10 @@ releaseEnv:
 
 # Command 2 "make unittest TESTFILE=<filename>"
 # this makefile will find testfile as $(MAINSRC_DIR)\<filename>.cpp and tester in $(TESTERSRC_DIR)\test_<filename>.cpp
-# compile them to test $()\
-# and then link them to generate a PE file as $()\*.exe 
+# compile them to $(TESTENV_DIR)\<filename>.o $(TESTENV_DIR)\test_<filename>.o
+# and then link them to generate a PE file as $(TESTENV_DIR)\<filename>.exe and run
+# this also generates notefile $(TESTENV_DIR)\<filename>.gcno and data for gcno to use
+# then use gcov to generate coverage report
 
 # fake target
 .PHONY: unittest

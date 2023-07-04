@@ -12,12 +12,12 @@
 #include<sstream>
 #include<algorithm>
 
-#include"GameGenerator.h"
-#include"GameFileIO.h"
+#include"controller.h"
 
 using std::cout;
 using std::string;
 using std::stringstream;
+
 
 
 
@@ -38,48 +38,23 @@ void printUsage()
 }
 
 
-
-
-
-enum {
-    NONE=0,
-    SOLVE,
-    GENERATE
-};
-void setProcessMode(int& previousMode,int newMode)
-{
-    if(previousMode!=NONE)
-    {
-        cout<<"Command is defined twice or more!\n";
-        exit(0);
-    }
-    previousMode=newMode;
-}
-
 int main(int argc,char* argv[])
 {
-    int processMode=NONE;
-
-    GeneratorConfig generatorConfig;
-
-    GameFile* gameInput=nullptr;
-    GameFile* gameOutput=nullptr;
-
-
-
     int opt;
-    if(argc==1)
+    if(argc==1)// no argument followed
     {
         printUsage();
         return 0;
     }
+
+    // argument parser with process state setter
     while ((opt=getopt(argc,argv,"c::s:n::m:ur:o:hf")) != -1)
     {
         switch (opt)
         {
 
         case 'c':
-            setProcessMode(processMode,GENERATE);
+            setProcessMode(GENERATE);
             //change generator config
             generatorConfig.solved=true;
             generatorConfig.solutionFixed=false;
@@ -87,20 +62,20 @@ int main(int argc,char* argv[])
             break;
 
         case 's':
-            setProcessMode(processMode,SOLVE);
+            setProcessMode(SOLVE);
             //change input
             gameInput=new GameFile(optarg,GameFile::IN);
             break;
 
         case 'n':
-            setProcessMode(processMode,GENERATE);
+            setProcessMode(GENERATE);
             //change generator config
             generatorConfig.solved=false;
             generatorConfig.solutionFixed=true;
             if(optarg!=NULL) generatorConfig.gameCount=atoi(optarg);
             break;
         case 'm':
-            if(processMode!=GENERATE || generatorConfig.solved!=false)
+            if(getProcessMode()!=GENERATE || generatorConfig.solved!=false)
             {
                 cout<<"This argument needs a precondition of generating unsolved games!\n";
                 exit(0);
@@ -114,7 +89,7 @@ int main(int argc,char* argv[])
             }
             break;
         case 'u':
-            if(processMode!=GENERATE || generatorConfig.solved!=false)
+            if(getProcessMode()!=GENERATE || generatorConfig.solved!=false)
             {
                 cout<<"This argument needs a precondition of generating unsolved games!\n";
                 exit(0);
@@ -122,7 +97,7 @@ int main(int argc,char* argv[])
             generatorConfig.solutionUniqueness=true;
             break;
         case 'r':
-            if(processMode!=GENERATE || generatorConfig.solved!=false)
+            if(getProcessMode()!=GENERATE || generatorConfig.solved!=false)
             {
                 cout<<"This argument needs a precondition of generating unsolved games!\n";
                 exit(0);

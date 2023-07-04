@@ -6,6 +6,7 @@
 #include <vector>
 #include <string.h>
 #include <time.h>
+#include <cmath>
 
 #include "tool.h"
 
@@ -89,7 +90,7 @@ void sudo::create_Que(int count, int que_num, int hole, int unique)
 		{
 			for (int j = 0; j < 9; j++)
 			{
-				solve_map[i][j] = result[i * 9 + j + que_num];
+				solve_map[i][j] = pow(2,result[i * 9 + j + que_num]-1);
 			}
 		}
 		srand(time(NULL));
