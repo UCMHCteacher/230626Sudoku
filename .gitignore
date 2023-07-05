@@ -26,8 +26,9 @@
 *.app
 
 # vscode auto generated settings
-.vscode
+.vscode/
 
 # complied files
-release
-test
+release/
+test/
+!src/test/
