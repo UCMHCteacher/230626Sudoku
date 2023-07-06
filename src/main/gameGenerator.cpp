@@ -66,7 +66,27 @@ void CreateSolvedGame(int (&matrix)[9][9])
  * @return nothing, not even a indicator
  * @warning Notice that matrix should be a 9*9 int and shouldn't be a pointer(int**). Or it will make an compile error.
  */
-void CreateUnsolvedGame(int (&matrix)[9][9],bool isUnique)
+void CreateUnsolvedGame(int (&matrix)[9][9],int spaceCount,bool isUnique)
 {
+    srand(time(NULL));
     CreateSolvedGame(matrix);
+
+    int nums=spaceCount;
+    while(nums)
+    {
+        int row=rand()%9;
+        int col=rand()%9;
+        if(matrix[row][col]!=0)
+        {
+            matrix[row][col]=0;
+            nums--;
+        }
+    }
+
+
+    if(isUnique)
+    {
+        ;
+    }
+
 }
