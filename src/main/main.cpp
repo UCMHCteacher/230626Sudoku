@@ -1,12 +1,3 @@
-/**
- * @file main.cpp
- * @author UCMHCteacher
- * @mail UCMHCteacher@163.com
- * @github https://github.com/UCMHCteacher
- * @date June 25 2023
- * 
- */
-
 #include<unistd.h>
 #include<iostream>
 #include<sstream>
@@ -40,6 +31,9 @@ void printUsage()
 
 int main(int argc,char* argv[])
 {
+    gameInput=nullptr;
+    gameOutput=nullptr;
+
     int opt;
     if(argc==1)// no argument followed
     {
@@ -57,7 +51,7 @@ int main(int argc,char* argv[])
             setProcessMode(GENERATE);
             //change generator config
             generatorConfig.solved=true;
-            generatorConfig.solutionFixed=false;
+            // generatorConfig.solutionFixed=false;
             if(optarg!=NULL) generatorConfig.gameCount=atoi(optarg);
             break;
 
@@ -71,7 +65,7 @@ int main(int argc,char* argv[])
             setProcessMode(GENERATE);
             //change generator config
             generatorConfig.solved=false;
-            generatorConfig.solutionFixed=true;
+            // generatorConfig.solutionFixed=true;
             if(optarg!=NULL) generatorConfig.gameCount=atoi(optarg);
             break;
         case 'm':
@@ -108,12 +102,20 @@ int main(int argc,char* argv[])
                 stringstream spaceCountStringStream(optstr);
                 spaceCountStringStream>>generatorConfig.spaceCountUpperBound>>generatorConfig.spaceCountLowerBound;
             }
-            if(generatorConfig.spaceCountLowerBound<20) generatorConfig.spaceCountLowerBound=20;
-            if(generatorConfig.spaceCountLowerBound>55) generatorConfig.spaceCountLowerBound=55;
-            if(generatorConfig.spaceCountUpperBound<20) generatorConfig.spaceCountUpperBound=20;
-            if(generatorConfig.spaceCountUpperBound>55) generatorConfig.spaceCountUpperBound=55;
-            if(generatorConfig.spaceCountLowerBound>generatorConfig.spaceCountUpperBound) 
-                std::swap(generatorConfig.spaceCountLowerBound,generatorConfig.spaceCountUpperBound);
+            {
+                bool spaceBoundChanged=false;
+                if(generatorConfig.spaceCountLowerBound<20) {generatorConfig.spaceCountLowerBound=20;spaceBoundChanged=true;}
+                if(generatorConfig.spaceCountLowerBound>55) {generatorConfig.spaceCountLowerBound=55;spaceBoundChanged=true;}
+                if(generatorConfig.spaceCountUpperBound<20) {generatorConfig.spaceCountUpperBound=20;spaceBoundChanged=true;}
+                if(generatorConfig.spaceCountUpperBound>55) {generatorConfig.spaceCountUpperBound=55;spaceBoundChanged=true;}
+                if(generatorConfig.spaceCountLowerBound>generatorConfig.spaceCountUpperBound) 
+                    {std::swap(generatorConfig.spaceCountLowerBound,generatorConfig.spaceCountUpperBound);spaceBoundChanged=true;}
+
+                if(spaceBoundChanged)
+                    cout<<
+                        "Space bound of unsolved games should be set between 20 and 55.\n"
+                        "Space bound is now set to "<<generatorConfig.spaceCountLowerBound<<"~"<<generatorConfig.spaceCountUpperBound<<".\n";
+            }
             break;
 
         case 'o':
@@ -137,8 +139,8 @@ int main(int argc,char* argv[])
     }
 
 
+    StartProcess();
 
-    
 
     return 0;
 }

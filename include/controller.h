@@ -3,19 +3,37 @@
 #include"GameFileIO.h"
 
 
-typedef struct GeneratorConfig
+class GeneratorConfig
 {
-    int gameCount=1;
+public:
+    int gameCount;
 
-    bool solved=false;
+
+    bool solved;
+
 
     int difficulty;
+
     int spaceCountUpperBound;
     int spaceCountLowerBound;
-    bool solutionUniqueness=false;
 
-    bool solutionFixed=true;
-}generatorConfig;
+    bool solutionUniqueness;
+
+    bool solutionFixed;
+
+
+    GeneratorConfig()
+    {
+        gameCount=1;
+        solved=false;
+        solutionUniqueness=false;
+        solutionFixed=false;
+
+        difficulty=0;
+        spaceCountLowerBound=0;
+        spaceCountUpperBound=0;
+    };
+};
 
 
 
@@ -33,3 +51,6 @@ extern GeneratorConfig generatorConfig;
 
 extern GameFile* gameInput;
 extern GameFile* gameOutput;
+
+
+void StartProcess();
