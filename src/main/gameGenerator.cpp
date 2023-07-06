@@ -68,7 +68,7 @@ void CreateSolvedGame(int (&matrix)[9][9])
  */
 void CreateUnsolvedGame(int (&matrix)[9][9],int spaceCount,bool isUnique)
 {
-    srand(time(NULL));
+    st:srand(time(NULL));
     CreateSolvedGame(matrix);
 
     int nums=spaceCount;
@@ -86,7 +86,8 @@ void CreateUnsolvedGame(int (&matrix)[9][9],int spaceCount,bool isUnique)
 
     if(isUnique)
     {
-        ;
+        int solvedMatrix[9][9];
+        if(!SolveGame(matrix,solvedMatrix))
+            goto st;
     }
-
 }

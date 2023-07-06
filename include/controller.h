@@ -1,6 +1,8 @@
 #pragma once
 
 #include"GameFileIO.h"
+#include"gameGenerator.h"
+#include"gameSolver.h"
 
 
 class GeneratorConfig
