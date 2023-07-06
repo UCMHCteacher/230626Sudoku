@@ -60,7 +60,8 @@ bool GameFile::readMatrix(int (&matrix)[9][9])
 
     if(matrixString.length()!=90)
     {
-        lastError=MATRIXSIZEINFILEERROR;
+        if(fileOperator.eof()) lastError=EOFERROR;
+        else lastError=MATRIXSIZEINFILEERROR;
         return false;
     }
     for(int i=0;i<90;i++)
@@ -148,7 +149,8 @@ bool GameFile::readMatrixas1D(int (&matrix)[81])
 
     if(matrixString.length()!=90)
     {
-        lastError=MATRIXSIZEINFILEERROR;
+        if(fileOperator.eof()) lastError=EOFERROR;
+        else lastError=MATRIXSIZEINFILEERROR;
         return false;
     }
     for(int i=0;i<90;i++)
