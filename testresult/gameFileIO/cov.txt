@@ -1,0 +1,45 @@
+File 'D:/Projects/C++/VSCode/230626Sudoku/src/main/gameFileIO.cpp'
+Lines executed:53.92% of 102
+Creating 'gameFileIO.cpp.gcov'
+
+File 'C:/Program Files/mingw64/amd64_12.2.0_win32_ucrt_rev2/lib/gcc/x86_64-w64-mingw32/12.2.0/include/c++/iostream'
+No executable lines
+Removing 'iostream.gcov'
+
+File 'C:/Program Files/mingw64/amd64_12.2.0_win32_ucrt_rev2/lib/gcc/x86_64-w64-mingw32/12.2.0/include/c++/bits/new_allocator.h'
+Lines executed:0.00% of 3
+Creating 'new_allocator.h.gcov'
+
+File 'C:/Program Files/mingw64/amd64_12.2.0_win32_ucrt_rev2/lib/gcc/x86_64-w64-mingw32/12.2.0/include/c++/bits/alloc_traits.h'
+Lines executed:100.00% of 2
+Creating 'alloc_traits.h.gcov'
+
+File 'C:/Program Files/mingw64/amd64_12.2.0_win32_ucrt_rev2/lib/gcc/x86_64-w64-mingw32/12.2.0/include/c++/ext/alloc_traits.h'
+Lines executed:100.00% of 2
+Creating 'alloc_traits.h.gcov'
+
+File 'C:/Program Files/mingw64/amd64_12.2.0_win32_ucrt_rev2/lib/gcc/x86_64-w64-mingw32/12.2.0/include/c++/bits/move.h'
+Lines executed:100.00% of 2
+Creating 'move.h.gcov'
+
+File 'C:/Program Files/mingw64/amd64_12.2.0_win32_ucrt_rev2/lib/gcc/x86_64-w64-mingw32/12.2.0/include/c++/bits/char_traits.h'
+Lines executed:20.00% of 15
+Creating 'char_traits.h.gcov'
+
+File 'C:/Program Files/mingw64/amd64_12.2.0_win32_ucrt_rev2/lib/gcc/x86_64-w64-mingw32/12.2.0/include/c++/bits/basic_string.h'
+Lines executed:100.00% of 2
+Creating 'basic_string.h.gcov'
+
+File 'C:/Program Files/mingw64/amd64_12.2.0_win32_ucrt_rev2/lib/gcc/x86_64-w64-mingw32/12.2.0/include/c++/bits/basic_string.tcc'
+Lines executed:87.50% of 8
+Creating 'basic_string.tcc.gcov'
+
+File 'C:/Program Files/mingw64/amd64_12.2.0_win32_ucrt_rev2/lib/gcc/x86_64-w64-mingw32/12.2.0/include/c++/bits/ios_base.h'
+Lines executed:100.00% of 2
+Creating 'ios_base.h.gcov'
+
+File 'C:/Program Files/mingw64/amd64_12.2.0_win32_ucrt_rev2/lib/gcc/x86_64-w64-mingw32/12.2.0/include/c++/x86_64-w64-mingw32/bits/c++config.h'
+Lines executed:100.00% of 2
+Creating 'c++config.h.gcov'
+
+Lines executed:55.00% of 140
